@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
@@ -15,12 +16,12 @@ import { LoginService } from '../../services/login/login';
 })
 export class Login {
   usuario = '';
-  contrasena = '';
+  password = '';
 
   constructor(private loginService: LoginService) {}
 
   ingresar() {
-    this.loginService.login(this.usuario, this.contrasena).subscribe({
+    this.loginService.login(this.usuario, this.password).subscribe({
       next: (respuesta) => {
         Swal.fire({
           title: '¡Bienvenido!',
@@ -33,7 +34,7 @@ export class Login {
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
-          text: 'Usuario o contraseña incorrectos'
+          text: 'Usuario o password incorrectos'
         });
       },
     });

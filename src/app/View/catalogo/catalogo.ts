@@ -1,22 +1,23 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { ClientesService } from '../../services/clientes';
+import { CatalogoService } from '../../services/catalogo/catalogo';
 import { Tabla } from '../../Componentes/tabla/tabla';
- 
 @Component({
-  selector: 'app-clientes',
+  selector: 'app-catalogo',
   imports: [Tabla],
   templateUrl: './catalogo.html',
   styleUrl: './catalogo.css',
 })
-export class Clientes implements OnInit {
-  data: any[] = [];
+export class Catalogo {
  
-  constructor(private clientesService: ClientesService, private cdr: ChangeDetectorRef) {}
+catalogo: any[] = [];
  
-  ngOnInit(): void {
-    this.clientesService.getClientes().subscribe((rows: any[]) => {
-      this.data = rows;
-      this.cdr.detectChanges();
+  constructor(public catalogoService: CatalogoService) {
+    this.catalogoService.getCatalogo().subscribe((data: any[]) => {
+      this.catalogo = data;
     });
+  }
+ 
+  verCatalogo(fila: any) {
+    console.log(fila);
   }
 }
